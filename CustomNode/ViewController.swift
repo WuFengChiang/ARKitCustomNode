@@ -7,12 +7,27 @@
 //
 
 import UIKit
+import ARKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var arScnView: ARSCNView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        arScnView.debugOptions = [.showWorldOrigin, .showFeaturePoints]
+        arScnView.showsStatistics = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        arScnView.session.run(ARWorldTrackingConfiguration())
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.viewDidDisappear(animated)
+        arScnView.session.pause()
     }
 
 
