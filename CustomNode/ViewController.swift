@@ -30,6 +30,20 @@ class ViewController: UIViewController {
         arScnView.session.pause()
     }
 
-
+    @IBAction func tapGestureAction(_ sender: UITapGestureRecognizer) {
+        
+        let purple = SCNMaterial()
+        purple.diffuse.contents = UIColor.purple
+        purple.isDoubleSided = true
+        
+        let box = SCNBox(width: 0.02, height: 0.02, length: 0.02, chamferRadius: 0.005)
+        box.materials = [purple]
+        let boxNode = SCNNode(geometry: box)
+        boxNode.position = SCNVector3(0.01, 0, -0.1)
+        
+        let rootNode: SCNNode = arScnView.scene.rootNode
+        rootNode.addChildNode(boxNode)
+    }
+    
 }
 
