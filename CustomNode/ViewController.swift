@@ -46,8 +46,14 @@ class ViewController: UIViewController {
         purple.diffuse.contents = UIColor.purple
         purple.isDoubleSided = true
         
-        let box = SCNBox(width: 0.02, height: 0.02, length: 0.02, chamferRadius: 0.005)
-        box.materials = [purple]
+        let videoMaterial = SCNMaterial()
+        let avPlayer = AVPlayer(url: URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")!)
+        avPlayer.play()
+        videoMaterial.diffuse.contents = avPlayer
+        videoMaterial.isDoubleSided = true
+        
+        let box = SCNBox(width: 0.02, height: 0.02, length: 0.02, chamferRadius: 0.001)
+        box.materials = [videoMaterial, purple]
         let boxNode = SCNNode(geometry: box)
         boxNode.position = SCNVector3(0.01, 0, -0.1)
         boxNode.name = MyNode.PURPLE_BOX_NODE.rawValue
