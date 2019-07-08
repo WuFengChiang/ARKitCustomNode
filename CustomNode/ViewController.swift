@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         
         arScnView.debugOptions = [.showWorldOrigin, .showFeaturePoints]
         arScnView.showsStatistics = true
+        arScnView.autoenablesDefaultLighting = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
