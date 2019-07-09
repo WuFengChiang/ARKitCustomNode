@@ -33,6 +33,16 @@ class ViewController: UIViewController {
 
     @IBAction func tapGestureAction(_ sender: UITapGestureRecognizer) {
         
+        if let hitTestResult = arScnView.hitTest(sender.location(in: arScnView)).first {
+            if hitTestResult.node.name == MyNode.PURPLE_BOX_NODE.rawValue {
+                
+                print("點到節點")
+                
+                return
+            }
+        }
+        
+        
         let purple = SCNMaterial()
         purple.diffuse.contents = UIColor.purple
         purple.isDoubleSided = true
