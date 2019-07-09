@@ -41,6 +41,7 @@ class ViewController: UIViewController {
                     hitNode.position.x,
                     hitNode.position.y,
                     hitNode.position.z - 0.02)
+                hitNode.eulerAngles = SCNVector3(0, Double(hitNode.eulerAngles.y) + 45.0 * (Double.pi / 180.0), 0)
                 SCNTransaction.animationDuration = 0.5
                 SCNTransaction.commit()
                 return
