@@ -34,10 +34,15 @@ class ViewController: UIViewController {
     @IBAction func tapGestureAction(_ sender: UITapGestureRecognizer) {
         
         if let hitTestResult = arScnView.hitTest(sender.location(in: arScnView)).first {
-            if hitTestResult.node.name == MyNode.PURPLE_BOX_NODE.rawValue {
-                
-                print("點到節點")
-                
+            let hitNode = hitTestResult.node
+            if hitNode.name == MyNode.PURPLE_BOX_NODE.rawValue {
+                SCNTransaction.begin()
+                hitNode.position = SCNVector3(
+                    hitNode.position.x,
+                    hitNode.position.y,
+                    hitNode.position.z - 0.02)
+                SCNTransaction.animationDuration = 0.5
+                SCNTransaction.commit()
                 return
             }
         }
