@@ -33,15 +33,6 @@ class ViewController: UIViewController {
 
     @IBAction func tapGestureAction(_ sender: UITapGestureRecognizer) {
         
-        let rootNode: SCNNode = arScnView.scene.rootNode
-        
-        for childNode in rootNode.childNodes {
-            if childNode.name == MyNode.PURPLE_BOX_NODE.rawValue {
-                print("只會建造出一個紫色方塊")
-                return
-            }
-        }
-        
         let purple = SCNMaterial()
         purple.diffuse.contents = UIColor.purple
         purple.isDoubleSided = true
@@ -55,10 +46,10 @@ class ViewController: UIViewController {
         let box = SCNBox(width: 0.02, height: 0.02, length: 0.02, chamferRadius: 0.001)
         box.materials = [videoMaterial, purple]
         let boxNode = SCNNode(geometry: box)
-        boxNode.position = SCNVector3(0.01, 0, -0.1)
+        boxNode.position = SCNVector3(Float.random(in: -0.1...0.1), Float.random(in: -0.1...0.1), Float.random(in: -0.1...0.1))
         boxNode.name = MyNode.PURPLE_BOX_NODE.rawValue
         
-        
+        let rootNode: SCNNode = arScnView.scene.rootNode
         rootNode.addChildNode(boxNode)
     }
     
